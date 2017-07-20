@@ -2,7 +2,7 @@
 
 Work in pairs to improve your portfolio.
 
-No need to add each other as collaborators, just share a link to your portfolio repo with your partner.
+Follow a git flow somewhat similar to our lab. Start by forking each other's portfolios.
 
 Start with code review. Spend the first 30 minutes looking over your partner's portfolio code. Look for opportunities to improve the code base according to the best practices and concepts that we've covered in class so far.
 
@@ -18,6 +18,6 @@ Create descriptive issues for the most important issues that should be addressed
 
 Once you both have a few issues logged, start writing code together.
 
-The Driver will work on the Navigator's codebase. The Navigator can talk them through what is where, and how changes should be made, and the Driver can implement them.
+The Driver will work on the Navigator's codebase. The Navigator can talk them through what is where, and how changes should be made, and the Driver can implement them. When an issue is complete, the Driver should push the changes to a branch on their fork, do a PR from their fork's branch to their fork's master, and then merge the branch.
 
-Switch after you've worked through a few issues. Switch back again (and again) if time allows.
+Switch after you've worked through a few issues. Switch back again (and again) if time allows. When you are done, each person should send a PR from their fork's master to the upstream repo.
