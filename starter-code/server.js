@@ -6,7 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
-const conString = 'postgres://localhost:5432';// DONE: Don't forget to set your own conString
+const conString = 'postgres://localhost:5432/kilovolt';// DONE: Don't forget to set your own conString
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', function(error) {
@@ -48,7 +48,7 @@ app.post('/articles', function(request, response) {
 
   function queryTwo() {
     client.query(
-      `SELECT author_id FROM authors WHERE author_id=$1;`, // DONE: Write a SQL query to retrieve the author_id from the authors table for the new article
+      `SELECT author_id FROM authors WHERE author=$1;`, // DONE: Write a SQL query to retrieve the author_id from the authors table for the new article
       [request.body.author], // DONE: Add the author name as data for the SQL query
       function(err, result) {
         if (err) console.error(err)
@@ -60,15 +60,14 @@ app.post('/articles', function(request, response) {
   function queryThree(author_id) {
     client.query(
       `INSERT INTO articles(
-        author_id,
-        title,
-        category,
-        "publishedOn",
-        body
-    )
-    VALUES ($1, $2, $3, $4, $5)
-  );`, // DONE: Write a SQL query to insert the new article using the author_id from our previous query
-      [request.body.author_id,
+      author_id,
+      title,
+      category,
+      "publishedOn",
+      body
+  )
+  VALUES ($1, $2, $3, $4, $5);`, // DONE: Write a SQL query to insert the new article using the author_id from our previous query
+      [author_id,
         request.body.title,
         request.body.category,
         request.body.publishedOn,
