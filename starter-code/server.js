@@ -6,7 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
 const app = express();
-const conString = 'postgres://johnathon:1234@localhost:5432/johnathon';// DONE: Don't forget to set your own conString
+const conString = 'postgres://localhost:5432';// DONE: Don't forget to set your own conString
 const client = new pg.Client(conString);
 client.connect();
 client.on('error', function(error) {
@@ -91,8 +91,8 @@ app.post('/articles', function(request, response) {
 
 app.put('/articles/:id', function(request, response) {
   // TODO: Write a SQL query to update an author record. Remember that our articles now have
-  // an author_id property, so we can reference it from the request.body.
-  // TODO: Add the required values from the request as data for the SQL query to interpolate
+  // an author_id property, so we can reference it from the request.body.DONE
+  // TODO: Add the required values from the request as data for the SQL query to interpolate. DONE
   client.query(
     `UPDATE articles
       SET author=$1, "authorUrl"=$2
@@ -105,15 +105,11 @@ app.put('/articles/:id', function(request, response) {
   )
   .then(function() {
     // TODO: Write a SQL query to update an article record. Keep in mind that article records
-    // now have an author_id, in addition to title, category, publishedOn, and body.
-    // TODO: Add the required values from the request as data for the SQL query to interpolate
+    // now have an author_id, in addition to title, category, publishedOn, and body. DONE
+    // TODO: Add the required values from the request as data for the SQL query to interpolate. DONE
     client.query(
       `UPDATE articles
-        SET author_id=$1,
-        title=$2,
-        category=$3,
-        publishedOn=$4,
-        body=$5
+        SET author_id=$1, title=$2, category=$3, publishedOn=$4, body=$5
         WHERE article_id=$6
         `,
       [
